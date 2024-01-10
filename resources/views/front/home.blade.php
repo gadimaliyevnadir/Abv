@@ -10,9 +10,11 @@
 @endsection
 @section('content')
     @if ($slidervideo->type = 'video')
+    @foreach ($slidervideo as $video)
         <video autoplay muted loop id="background-video">
-            <source src="{{ $slidervideo->image }}" type="video/mp4">
+            <source src="{{ $video->image }}" type="video/mp4">
         </video>
+        @endforeach
     @endif
     <div class="cover-slider">
         @foreach ($sliderimages as $image)

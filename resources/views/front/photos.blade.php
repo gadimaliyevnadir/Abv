@@ -1,16 +1,15 @@
 @extends('front.layouts.app')
 @section('metatitle')
-    {{$metatag->photos_title}}
+    {{ $metatag->photos_title }}
 @endsection
 @section('metadesc')
-    {{$metatag->photos_desc}}
+    {{ $metatag->photos_desc }}
 @endsection
 @section('metakeywords')
-    {{$metatag->photos_keywords}}
+    {{ $metatag->photos_keywords }}
 @endsection
 @section('content')
-
-        <!-- Start Header Section -->
+    <!-- Start Header Section -->
     <header class="cs-site_header cs-style1 text-uppercase cs-sticky_header">
         <x-header-component />
     </header>
@@ -39,11 +38,11 @@
     <section>
         <div class="container">
             <div class="row mb-100">
-                @foreach ($photos as $photo)
-                <div class="galery-column col-lg-4 col-md-6 mb-30" data-aos="flip-down">
-                    <img src="{{$photo->image}}" onclick="openModal();currentSlide(1)"
-                        class="galery-hover-shadow">
-                </div>
+                @foreach ($photos as $key=>$photo)
+                    <div class="galery-column col-lg-4 col-md-6 mb-30" data-aos="flip-down">
+                        <img src="{{ $photo->image }}" onclick="openModal();currentSlide({{ $key+1}})"
+                            class="galery-hover-shadow">
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -53,35 +52,12 @@
     <div id="galery-myModal" class="galery-modal">
         <span class="galery-close cursor" onclick="closeModal()">&times;</span>
         <div class="galery-modal-content">
-
-            <div class="galery-mySlides">
-                <div class="galery-numbertext">1 / 6</div>
-                <img src="/assets/img/about_img_1.jpeg" style="width:100%">
-            </div>
-
-            <div class="galery-mySlides">
-                <div class="galery-numbertext">2 / 6</div>
-                <img src="/assets/img/about_img_2.jpeg" style="width:100%">
-            </div>
-
-            <div class="galery-mySlides">
-                <div class="galery-numbertext">3 / 6</div>
-                <img src="/assets/img/about_img_3.jpeg" style="width:100%">
-            </div>
-
-            <div class="galery-mySlides">
-                <div class="galery-numbertext">4 / 6</div>
-                <img src="/assets/img/about_img_4.jpeg" style="width:100%">
-            </div>
-            <div class="galery-mySlides">
-                <div class="galery-numbertext">5 / 6</div>
-                <img src="/assets/img/about_img_5.jpeg" style="width:100%">
-            </div>
-            <div class="galery-mySlides">
-                <div class="galery-numbertext">6 / 6</div>
-                <img src="/assets/img/about_img_1.jpeg" style="width:100%">
-            </div>
-
+            @foreach ($photos as $key => $photo)
+                <div class="galery-mySlides">
+                    <div class="galery-numbertext">{{ $key + 1 }} /{{ count($photos) }}</div>
+                    <img src="{{ $photo->image }}" style="width:100%">
+                </div>
+            @endforeach
             <!-- Next/previous controls -->
             <a class="galery-prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="galery-next" onclick="plusSlides(1)">&#10095;</a>
@@ -92,6 +68,5 @@
     <div class="cs-height_150 cs-height_lg_80"></div>
 
     <div class="cs-height_130 cs-height_lg_70"></div>
-    <x-footcontact-component/>
-
+    <x-footcontact-component />
 @endsection

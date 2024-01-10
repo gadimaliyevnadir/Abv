@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function index(){
         $setting=Setting::firstOrFail();
         $sliderimages=Slider::where('type','image')->get();
-        $slidervideo= Slider::where('type', 'video')->firstOrFail();
+        $slidervideo= Slider::where('type', 'video')->get();
         $clients=Client::all();
         $customers = Client::orderByDesc('id')->get();
         $teams=Team::limit(3)->get();

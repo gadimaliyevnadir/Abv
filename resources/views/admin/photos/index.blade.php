@@ -12,7 +12,7 @@
             <div class="card">
                 <h5 class="card-header">Bütün Fotolar</h5>
                 <div class="table-responsive text-nowrap">
-                    <table class="table">
+                    <table class="table" id="photos">
                         <thead>
                             <tr>
                                 <th>Sıra</th>
@@ -48,4 +48,11 @@
     </div>
     </div>
     </div>
+     @push('scripts')
+    <script>
+        $(document).ready(function(){
+        $('#photos').DataTable();
+        });
+    </script>
+    @endpush
 @endsection
